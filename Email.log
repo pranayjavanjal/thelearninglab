@@ -1,0 +1,42 @@
+------------------------------------------------------
+Log Date & Time:21 May 2019 12:01:35 IST
+javax.mail.AuthenticationFailedException: 535 5.7.3 Authentication unsuccessful [BM1PR0101CA0063.INDPRD01.PROD.OUTLOOK.COM]
+
+	at com.sun.mail.smtp.SMTPTransport$Authenticator.authenticate(SMTPTransport.java:932)
+	at com.sun.mail.smtp.SMTPTransport.authenticate(SMTPTransport.java:843)
+	at com.sun.mail.smtp.SMTPTransport.protocolConnect(SMTPTransport.java:748)
+	at javax.mail.Service.connect(Service.java:388)
+	at javax.mail.Service.connect(Service.java:246)
+	at javax.mail.Service.connect(Service.java:267)
+	at com.lms.controllers.EmailController.execute(EmailController.java:85)
+	at com.lms.controllers.EmailController.sendMail(EmailController.java:52)
+	at com.lms.controllers.EmailController.main(EmailController.java:45)
+------------------------------------------------------
+------------------------------------------------------
+Log Date & Time:21 May 2019 12:25:54 IST
+javax.mail.AuthenticationFailedException: 535 5.7.3 Authentication unsuccessful [PN1PR0101CA0069.INDPRD01.PROD.OUTLOOK.COM]
+
+	at com.sun.mail.smtp.SMTPTransport$Authenticator.authenticate(SMTPTransport.java:932)
+	at com.sun.mail.smtp.SMTPTransport.authenticate(SMTPTransport.java:843)
+	at com.sun.mail.smtp.SMTPTransport.protocolConnect(SMTPTransport.java:748)
+	at javax.mail.Service.connect(Service.java:388)
+	at javax.mail.Service.connect(Service.java:246)
+	at javax.mail.Service.connect(Service.java:267)
+	at com.lms.controllers.EmailController.execute(EmailController.java:85)
+	at com.lms.controllers.EmailController.sendMail(EmailController.java:52)
+	at com.lms.controllers.EmailController.main(EmailController.java:45)
+------------------------------------------------------
+------------------------------------------------------
+Log Date & Time:21 May 2019 12:28:44 IST
+javax.mail.AuthenticationFailedException: 535 5.7.3 Authentication unsuccessful [PN1PR0101CA0058.INDPRD01.PROD.OUTLOOK.COM]
+
+	at com.sun.mail.smtp.SMTPTransport$Authenticator.authenticate(SMTPTransport.java:932)
+	at com.sun.mail.smtp.SMTPTransport.authenticate(SMTPTransport.java:843)
+	at com.sun.mail.smtp.SMTPTransport.protocolConnect(SMTPTransport.java:748)
+	at javax.mail.Service.connect(Service.java:388)
+	at javax.mail.Service.connect(Service.java:246)
+	at javax.mail.Service.connect(Service.java:267)
+	at com.lms.controllers.EmailController.execute(EmailController.java:85)
+	at com.lms.controllers.EmailController.sendMail(EmailController.java:52)
+	at com.lms.controllers.EmailController.main(EmailController.java:45)
+------------------------------------------------------

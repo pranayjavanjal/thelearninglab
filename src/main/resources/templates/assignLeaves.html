@@ -1,0 +1,209 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Edit User</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Bootstrap Core CSS -->
+<link th:href="@{/css/bootstrap.min.css}" rel='stylesheet' type='text/css' />
+<!-- Custom CSS -->
+<link th:href="@{/css/style.css}" rel='stylesheet' type='text/css' />
+<link rel="stylesheet" th:href="@{/css/morris.css}" type="text/css"/>
+<!-- Graph CSS -->
+<link th:href="@{/css/font-awesome.css}" rel="stylesheet"> 
+<!-- jQuery -->
+<script th:src="@{/js/jquery-2.2.0.min.js}"></script>
+<!-- //jQuery -->
+<link href='//fonts.googleapis.com/css?family=Roboto:700,500,300,100italic,100,400' rel='stylesheet' type='text/css'/>
+<link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<!-- lined-icons -->
+<link rel="stylesheet" th:href="@{/css/icon-font.min.css}" type='text/css' />
+<!-- //lined-icons -->
+<link rel="shortcut icon" th:href="@{/img/favicon.png}">
+<script th:src="@{/js/bootbox.min.js}"></script>
+</head> 
+<body>
+<div class="page-container">
+   <!--/content-inner-->
+	<div class="left-content">
+	   <div class="mother-grid-inner">
+             <!--header start here-->
+				<div class="header-main">
+					<div class="">
+						<a href="#">
+							<img th:src="@{img/site-logo.jpg}" alt="The Learning Lab" id="logo" data-height-percentage="54" data-actual-width="169" data-actual-height="72" style="width: 22%">
+						</a>
+						<div class="profile_details w3l" style="float:right;">		
+							<ul>
+								<li class="dropdown profile_details_drop">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+										<div class="profile_img">	
+											<span class="prfil-img"><img th:src="@{/img/profile.jpg}" alt=""> </span> 
+											<div class="user-name">
+												<p sec:authentication="name"></p>
+												<span sec:authentication="principal.authorities"></span>
+											</div>
+											<i class="fa fa-angle-down"></i>
+											<i class="fa fa-angle-up"></i>
+											<div class="clearfix"></div>	
+										</div>	
+									</a>
+									<ul class="dropdown-menu drp-mnu"> 
+										<li> <a th:href="@{/user/editUserProfile}"><i class="fa fa-user"></i> Profile</a> </li> 
+										<li> <a th:href="@{/logout}"><i class="fa fa-sign-out"></i> Logout</a> </li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+						<h2><a th:href="@{/user/home}">The Learning Lab</a></h2>
+					</div>
+					<div class="clearfix"> </div>	
+				</div>
+<!--heder end here-->
+		<ol class="breadcrumb">
+            <li class="breadcrumb-item"><a th:href="@{/user/home}">Home</a> <i class="fa fa-angle-right"></i> Assign Leaves</li>
+        </ol>
+		<div class="grid-form1">
+        	<h3 align="center">Assign Employee Leaves</h3>
+            <div class="tab-content tab-pane active" id="horizontal-form">
+	            <label class="alert alert-info" style="width: 100%;" th:if="${successMessage != null}" th:text="${successMessage}"></label>
+                <form class="form-horizontal" th:action="@{/user/add-leaves}" method="post" th:object="${LeaveMaster}">
+                	<div class="form-group">
+						<label class="col-sm-4 control-label">Employee Name :</label>
+						<div class="col-sm-6">
+	                	   <select th:field="*{empEmail}" class="form-control1" required="required">
+								<option value="">Select Employee</option>
+								 <option th:each="userList : ${userList}"
+								   th:value="${userList.email}"
+		                            th:utext="${userList.firstName} +' '+${userList.lastName}"> 
+		                            </option>
+							</select>
+						</div>
+						<label class="alert-danger col-sm-6 col-sm-offset-4" th:if="${#fields.hasErrors('empEmail')}" th:errors="*{empEmail}" ></label>
+					</div>
+					
+					<div class="form-group">
+						<label class="col-sm-4 control-label">Leave Type :</label>
+						<div class="col-sm-6">
+							<select th:field="*{leaveType}" class="form-control1">
+								<option value="">Select</option>
+								<option value="ANNUAL LEAVE">ANNUAL LEAVE</option>
+								<option value="SICK LEAVE">SICK LEAVE</option>
+								<option value="RESTRICTED">RESTRICTED</option><!-- 
+								<option value="COMP-OFF">COMP-OFF</option> -->
+							</select>
+						</div>
+						
+						<label class="alert-danger col-sm-6 col-sm-offset-4" th:if="${#fields.hasErrors('leaveType')}" th:errors="*{leaveType}"></label> 
+					</div>
+					
+					<div class="form-group">
+						<label class="col-sm-4 control-label">Total Leaves :</label>
+						<div class="col-sm-6">
+							<textarea th:field="*{totalLeaves}" placeholder="Total Leaves" class="form-control1" style="height: 35px;"></textarea>
+						</div>
+						 
+						<label class="alert-danger col-sm-6 col-sm-offset-4" th:if="${#fields.hasErrors('totalLeaves')}" th:errors="*{totalLeaves}" ></label>
+					</div>
+			
+			
+			
+					<div class="clearfix"></div>
+					<div class="row col-sm-offset-4" style="margin-top: 20px;">
+							<button type="submit" class="btn btn-primary login">Submit</button>
+							<a th:href="@{/user/add-leaves}"><button type="button" class="btn btn-default">Cancel</button></a>
+					</div>
+                </form>              
+                
+            </div>
+         </div>
+
+<script type="text/javascript">
+	$(function(){
+		$('.date-pickerId').datepicker();
+	});
+</script>
+<!-- script-for sticky-nav -->
+	<script>
+		$(document).ready(function() {
+			 var navoffeset=$(".header-main").offset().top;
+			 $(window).scroll(function(){
+				var scrollpos=$(window).scrollTop(); 
+				if(scrollpos >=navoffeset){
+					$(".header-main").addClass("fixed");
+				}else{
+					$(".header-main").removeClass("fixed");
+				}
+			 });
+			 
+		});
+	</script>
+<div class="inner-block">
+
+</div>
+<!--inner block end here-->
+<!--copy rights start here-->
+<div class="copyrights">
+	 <!-- <p>&copy; Pranay Javanjal. All Rights Reserved </p> -->
+	 <p>&copy; CarPro Systems. All Rights Reserved.</p>
+</div>	
+<!--COPY rights end here-->
+</div>
+</div>
+  <!--//content-inner-->
+			<!--/sidebar-menu-->
+				<div class="sidebar-menu">
+			<header class="logo1">
+				<a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span> </a> 
+			</header>
+			<div style="border-top:1px ridge rgba(255, 255, 255, 0.15)"></div>
+			<div class="menu">
+				<ul id="menu" >
+					<li><a th:href="@{/user/home}"><i class="fa fa-home"></i> <span>Home</span></a></li>
+					
+					<li sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/user/manage-users}"><i class="fa fa-users"></i> <span>Manage Users</span></a></li>
+					
+					<li sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/registration}"><i class="fa fa-user-plus"></i> <span>Register User</span></a></li>
+					
+					
+					
+					<li sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/bulletin/add-category}"><i class="fa fa-check-square"></i> <span>Define Category</span></a></li>
+					
+					<li><a th:href="@{/user/change-password}"><i class="fa fa-key"></i> <span>Change Password</span></a></li>
+			  	</ul>
+			</div>
+		</div>
+				<div class="clearfix"></div>		
+</div>
+<script>
+var toggle = true;
+			
+$(".sidebar-icon").click(function() {                
+  if (toggle)
+  {
+	$(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
+	$("#menu span").css({"position":"absolute"});
+  }
+  else
+  {
+	$(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
+	setTimeout(function() {
+	  $("#menu span").css({"position":"relative"});
+	}, 400);
+  }
+				
+				toggle = !toggle;
+			});
+</script>
+
+<!--js -->
+<script th:src="@{/js/jquery.nicescroll.js}"></script>
+<script th:src="@{/js/scripts.js}"></script>
+<!-- Bootstrap Core JavaScript -->
+   <script th:src="@{/js/bootstrap.min.js}"></script>
+   <!-- /Bootstrap Core JavaScript -->	   
+
+</body>
+</html>
