@@ -73,55 +73,48 @@ public class LeaveManageController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/user/get-all-leaves", method = RequestMethod.GET)
-	public @ResponseBody String getAllLeaves(@RequestParam(value = "pending", defaultValue = "false") boolean pending,
-			@RequestParam(value = "accepted", defaultValue = "false") boolean accepted,
-			@RequestParam(value = "rejected", defaultValue = "false") boolean rejected,
-			@RequestParam(value = "allleaves", defaultValue = "true") boolean allleaves) throws Exception {
-		UserInfo userInfo = userInfoService.getUserInfo();
-
-		Iterator<LeaveDetails> iterator = leaveManageService.getAllLeaves().iterator();
-		if (pending || accepted || rejected || (allleaves && !userInfo.getRole().equals("HR")))
-			iterator = leaveManageService.getAllLeavesOnStatus(pending, accepted, rejected, allleaves, userInfo)
-					.iterator();
-		JSONArray jsonArr = new JSONArray();
-		DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd");
-		Date date = new Date();
-		Calendar calendar = Calendar.getInstance();
-
-		while (iterator.hasNext()) {
-			LeaveDetails leaveDetails = iterator.next();
-			if (userInfo.getRole().equals("HR") || userInfo.getRole().equals("ADMIN")) {
-				if (!leaveDetails.isActive() && leaveDetails.isAcceptRejectFlag()) {
-					calendar.setTime(leaveDetails.getToDate());
-					calendar.add(Calendar.DATE, 1);
-					JSONObject jsonObj = new JSONObject();
-					jsonObj.put("title", leaveDetails.getEmployeeName());
-					jsonObj.put("start", dateFormat.format(leaveDetails.getFromDate()));
-					jsonObj.put("end", dateFormat.format(date));
-					jsonObj.put("color", "green");
-					jsonArr.put(jsonObj);
-				}
-
-			} else {
-				calendar.setTime(leaveDetails.getToDate());
-				calendar.add(Calendar.DATE, 1);
-				JSONObject jsonObj = new JSONObject();
-				jsonObj.put("title", leaveDetails.getEmployeeName());
-				jsonObj.put("start", dateFormat.format(leaveDetails.getFromDate()));
-				jsonObj.put("end", dateFormat.format(date));
-				if (leaveDetails.isActive())
-					jsonObj.put("color", "#0878af");
-				if (!leaveDetails.isActive() && leaveDetails.isAcceptRejectFlag())
-					jsonObj.put("color", "green");
-				if (!leaveDetails.isActive() && !leaveDetails.isAcceptRejectFlag())
-					jsonObj.put("color", "red");
-				jsonArr.put(jsonObj);
-			}
-		}
-
-		return jsonArr.toString();
-	}
+	/*
+	 * @RequestMapping(value = "/user/get-all-leaves", method = RequestMethod.GET)
+	 * public @ResponseBody String getAllLeaves(@RequestParam(value = "pending",
+	 * defaultValue = "false") boolean pending,
+	 * 
+	 * @RequestParam(value = "accepted", defaultValue = "false") boolean accepted,
+	 * 
+	 * @RequestParam(value = "rejected", defaultValue = "false") boolean rejected,
+	 * 
+	 * @RequestParam(value = "allleaves", defaultValue = "true") boolean allleaves)
+	 * throws Exception { UserInfo userInfo = userInfoService.getUserInfo();
+	 * 
+	 * Iterator<LeaveDetails> iterator =
+	 * leaveManageService.getAllLeaves().iterator(); if (pending || accepted ||
+	 * rejected || (allleaves && !userInfo.getRole().equals("HR"))) iterator =
+	 * leaveManageService.getAllLeavesOnStatus(pending, accepted, rejected,
+	 * allleaves, userInfo) .iterator(); JSONArray jsonArr = new JSONArray();
+	 * DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd"); Date date = new
+	 * Date(); Calendar calendar = Calendar.getInstance();
+	 * 
+	 * while (iterator.hasNext()) { LeaveDetails leaveDetails = iterator.next(); if
+	 * (userInfo.getRole().equals("HR") || userInfo.getRole().equals("ADMIN")) { if
+	 * (!leaveDetails.isActive() && leaveDetails.isAcceptRejectFlag()) {
+	 * calendar.setTime(leaveDetails.getToDate()); calendar.add(Calendar.DATE, 1);
+	 * JSONObject jsonObj = new JSONObject(); jsonObj.put("title",
+	 * leaveDetails.getEmployeeName()); jsonObj.put("start",
+	 * dateFormat.format(leaveDetails.getFromDate())); jsonObj.put("end",
+	 * dateFormat.format(date)); jsonObj.put("color", "green");
+	 * jsonArr.put(jsonObj); }
+	 * 
+	 * } else { calendar.setTime(leaveDetails.getToDate());
+	 * calendar.add(Calendar.DATE, 1); JSONObject jsonObj = new JSONObject();
+	 * jsonObj.put("title", leaveDetails.getEmployeeName()); jsonObj.put("start",
+	 * dateFormat.format(leaveDetails.getFromDate())); jsonObj.put("end",
+	 * dateFormat.format(date)); if (leaveDetails.isActive()) jsonObj.put("color",
+	 * "#0878af"); if (!leaveDetails.isActive() &&
+	 * leaveDetails.isAcceptRejectFlag()) jsonObj.put("color", "green"); if
+	 * (!leaveDetails.isActive() && !leaveDetails.isAcceptRejectFlag())
+	 * jsonObj.put("color", "red"); jsonArr.put(jsonObj); } }
+	 * 
+	 * return jsonArr.toString(); }
+	 */
 
 	@RequestMapping(value = "/user/manage-leaves", method = RequestMethod.GET)
 	public ModelAndView manageLeaves(ModelAndView mav, HttpServletRequest request) {

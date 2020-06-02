@@ -80,19 +80,19 @@ public class LeaveManageService {
 
 	}
 
-	public List<LeaveDetails> getAllLeavesOnStatus(boolean pending, boolean accepted, boolean rejected,boolean allleaves,UserInfo userInfo) {
-
-		StringBuffer whereQuery = new StringBuffer();
-		whereQuery.append("ui.department='"+userInfo.getDepartment()+"' ");
-		if (pending)
-		    whereQuery.append("and ld.active='true' or ");
-		if (accepted)
-		    whereQuery.append("and (ld.active='false' and ld.accept_reject_flag='true') or ");
-		if (rejected)
-		    whereQuery.append("and (ld.active='false' and ld.accept_reject_flag='false') or ");
-	    if(!allleaves)
-		    whereQuery.append(" 1=0");
-		
-		return leaveManageNativeRepo.getAllLeavesOnStatus(whereQuery);
-	}
+	/*
+	 * public List<LeaveDetails> getAllLeavesOnStatus(boolean pending, boolean
+	 * accepted, boolean rejected,boolean allleaves,UserInfo userInfo) {
+	 * 
+	 * StringBuffer whereQuery = new StringBuffer();
+	 * whereQuery.append("ui.department='"+userInfo.getDepartment()+"' "); if
+	 * (pending) whereQuery.append("and ld.active='true' or "); if (accepted)
+	 * whereQuery.
+	 * append("and (ld.active='false' and ld.accept_reject_flag='true') or "); if
+	 * (rejected) whereQuery.
+	 * append("and (ld.active='false' and ld.accept_reject_flag='false') or ");
+	 * if(!allleaves) whereQuery.append(" 1=0");
+	 * 
+	 * return leaveManageNativeRepo.getAllLeavesOnStatus(whereQuery); }
+	 */
 }

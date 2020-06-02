@@ -49,8 +49,8 @@ public class LoginController {
 		mav.addObject("userInfo", userInfo);
 		if (!(auth instanceof AnonymousAuthenticationToken)) {
 			
-			if(userInfo.getRole().equals("HR") || userInfo.getRole().equals("ADMIN")){
-				mav.setViewName("home_hr");
+			if(userInfo.getRole().equals("0")){
+				mav.setViewName("index");
 			}else{
 				mav.setViewName("home");
 			}
@@ -86,7 +86,7 @@ public class LoginController {
 	public ModelAndView createNewUser(ModelAndView mav, @Valid UserInfo userInfo, BindingResult bindResult) {
 
 		UserInfo userExists = userInfoService.findUserByEmail(userInfo.getEmail());
-
+		userInfo.setDob(userInfo.getDob());
 		if (userExists != null) {
 			bindResult.rejectValue("email", "error.user", "User already exists with Email id");
 		}
@@ -118,8 +118,8 @@ public class LoginController {
 
 		mav.addObject("userInfo", userInfo);
 		
-		if(userInfo.getRole().equals("ADMIN")){
-			mav.setViewName("home_hr");
+		if(userInfo.getRole().equals("0")){
+			mav.setViewName("index");
 		}else{
 			mav.setViewName("home");
 		}

@@ -22,12 +22,12 @@ public interface UserInfoRepository extends JpaRepository<UserInfo, Serializable
 
     @Transactional
     @Modifying
-    @Query(value = "update userinfo set active='false' where id=?", nativeQuery = true)
+    @Query(value = "update userinfo set active=false where id=?", nativeQuery = true)
     public void blockUser(int id);
 
     @Transactional
     @Modifying
-    @Query(value = "update userinfo set active='true' where id=?", nativeQuery = true)
+    @Query(value = "update userinfo set active=true where id=?", nativeQuery = true)
     public void unBlockUser(int id);
     
     @Query(nativeQuery = true, value = "select * from userinfo where department=(select department from userinfo where email=?) and role='MANAGER'")
@@ -36,10 +36,10 @@ public interface UserInfoRepository extends JpaRepository<UserInfo, Serializable
     @Transactional
     @Modifying
     @Query(value = "update userinfo set first_name=?,last_name=?,department=? where email=?", nativeQuery = true)
-    public void updateUser(String fisrtName,String lastName,String department,String email);
+    public void updateUser(String fisrtName,String lastName,String email);
     
     @Transactional
     @Modifying
-    @Query(value = "update userinfo set active='false' where email=?", nativeQuery = true)
+    @Query(value = "update userinfo set active=false where email=?", nativeQuery = true)
     public void blockUserByEmail(String email);
 }

@@ -1,14 +1,11 @@
 package com.tll.models;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
@@ -41,109 +38,212 @@ public class UserInfo {
     @Column(name = "first_name")
     private String firstName;
 
+    @Column(name = "middle_name")
+    private String middleName;
+
     @NotEmpty(message = "Please provide last name!")
     @Column(name = "last_name")
     private String lastName;
 
     @Column(name = "active")
     private boolean active;
-    
-    @NotEmpty(message = "Please provide user department!")
-    @Column(name = "department")
-    private String department;
+	/*
+	 * @NotEmpty(message = "Please provide user department!")
+	 * 
+	 * @Column(name = "department") private String department;
+	 */
 
     //@NotNull(message = "Please provide Joining date!")
-    @Column(name = "joining_date")
-    private Date joiningDate;
+    @Column(name = "dob")
+    private String dob;
     
     //@NotNull(message = "Please provide Confirmation date!")
-    @Column(name = "confirm_date")
-    private Date confirmDate;
+	/*
+	 * @Column(name = "confirm_date") private Date confirmDate;
+	 */
+    @NotEmpty(message = "Contact Number cannot be empty!")
+    @Column(name = "number")
+    private String number;
     
-    public int getId() {
-	return id;
-    }
+    @Column(name = "number2")
+    private String number2;
+    
+    @Column(name = "gender")
+    private String gender;
 
-    public void setId(int id) {
-	this.id = id;
-    }
+    @Column(name = "address")
+    private String address;
+    
+    @Column(name = "city")
+    private String city;
+    
+    @Column(name = "state")
+    private String state;
+    
+    @Column(name = "zip_code")
+    private String zipCode;
 
-    public String getEmail() {
-	return email;
-    }
-
-    public void setEmail(String email) {
-	this.email = email;
-    }
-
-    public String getPassword() {
-	return password;
-    }
-
-    public void setPassword(String password) {
-	this.password = password;
-    }
-
-    public String getRole() {
-	return role;
-    }
-
-    public void setRole(String role) {
-	this.role = role;
-    }
-
-    public String getFirstName() {
-	return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-	this.firstName = firstName;
-    }
-
-    public String getLastName() {
-	return lastName;
-    }
-
-    public void setLastName(String lastName) {
-	this.lastName = lastName;
-    }
-
-    public boolean isActive() {
-	return active;
-    }
-
-    public void setActive(boolean active) {
-	this.active = active;
-    }
-
-	public String getDepartment() {
-		return department;
+	public UserInfo() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public void setDepartment(String department) {
-		this.department = department;
+	public UserInfo(int id, String email, String password, String role, String firstName, String middleName,
+			String lastName, boolean active, String dob, String number, String number2, String gender, String address,
+			String city, String state, String zipCode) {
+		super();
+		this.id = id;
+		this.email = email;
+		this.password = password;
+		this.role = role;
+		this.firstName = firstName;
+		this.middleName = middleName;
+		this.lastName = lastName;
+		this.active = active;
+		this.dob = dob;
+		this.number = number;
+		this.number2 = number2;
+		this.gender = gender;
+		this.address = address;
+		this.city = city;
+		this.state = state;
+		this.zipCode = zipCode;
 	}
 
-	public Date getJoiningDate() {
-		return joiningDate;
+	public int getId() {
+		return id;
 	}
 
-	public void setJoiningDate(Date joiningDate) {
-		this.joiningDate = joiningDate;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public Date getConfirmDate() {
-		return confirmDate;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setConfirmDate(Date confirmDate) {
-		this.confirmDate = confirmDate;
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getMiddleName() {
+		return middleName;
+	}
+
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public String getDob() {
+		return dob;
+	}
+
+	public void setDob(String dob) {
+		this.dob = dob;
+	}
+
+	public String getNumber() {
+		return number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
+
+	public String getNumber2() {
+		return number2;
+	}
+
+	public void setNumber2(String number2) {
+		this.number2 = number2;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getZipCode() {
+		return zipCode;
+	}
+
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
 	}
 
 	@Override
 	public String toString() {
 		return "UserInfo [id=" + id + ", email=" + email + ", password=" + password + ", role=" + role + ", firstName="
-				+ firstName + ", lastName=" + lastName + ", active=" + active + ", department=" + department
-				+ ", joiningDate=" + joiningDate + ", confirmDate=" + confirmDate + "]";
+				+ firstName + ", middleName=" + middleName + ", lastName=" + lastName + ", active=" + active + ", dob="
+				+ dob + ", number=" + number + ", number2=" + number2 + ", gender=" + gender + ", address=" + address
+				+ ", city=" + city + ", state=" + state + ", zipCode=" + zipCode + "]";
 	}
+    
 }

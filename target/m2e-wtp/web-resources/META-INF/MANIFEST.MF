@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: TLL
+Implementation-Version: 1.0
+Built-By: Pranay Javanjal
+Implementation-Vendor-Id: com.tll
+Build-Jdk: 1.8.0_251
+Implementation-URL: http://projects.spring.io/spring-boot/TLL/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+Main-Class: com.tll.TheLearningLabApplication
+

@@ -43,8 +43,7 @@ public class UserInfoService {
 		if(userInfo.getRole().equals("EMPLOYEE")){
 			userInfoRepository.blockUserByEmail(userInfo.getEmail());
 		}
-		userInfoRepository.updateUser(userInfo.getFirstName(), userInfo.getLastName(),
-				userInfo.getDepartment(), userInfo.getEmail());
+		userInfoRepository.updateUser(userInfo.getFirstName(), userInfo.getLastName(), userInfo.getEmail());
 	}
 
 	public List<UserInfo> getUsers() {
